@@ -19,7 +19,8 @@ export const metadata: Metadata = {
   keywords: ["Arc Network", "Circle App Kit", "USDC", "EURC", "CCTP", "Bridge", "Swap", "dApp boilerplate"],
   authors: [{ name: "Arc Developers" }],
   icons: {
-    icon: "https://cdn.prod.website-files.com/685311a976e7c248b5dfde95/68921f69e5659feee825637e_9a3d143150a36125b5d7f0c2367c9ca6_arc-favicon-test.png",
+    icon: "/arc-testnet-icon.png",
+    apple: "/arc-testnet-icon.png",
   },
   openGraph: {
     title: "Arc Starter Kit | Circle App Kit Swap & Bridge",
