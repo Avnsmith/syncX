@@ -1,0 +1,30 @@
+// Arc Testnet contract addresses
+// IMPORTANT: These are TESTNET addresses. Mainnet will differ.
+
+export const ARC_TESTNET_CONTRACTS = {
+  // Stablecoins
+  USDC:  "0x3600000000000000000000000000000000000000",
+  EURC:  "0x89B50855Aa3bE2F677cD6303Cec089B5F319D72a",
+  USYC:  "0xe9185F0c5F296Ed1797AaE4238D26CCaBEadb86C",
+  CIRBTC: "0xf0C4a4CE82A5746AbAAd9425360Ab04fbBA432BF", // Circle Bitcoin contract address
+
+  // CCTP (Domain 26)
+  TokenMessengerV2:     "0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA",
+  MessageTransmitterV2: "0xE737e5cEBEEBa77EFE34D4aa090756590b1CE275",
+  TokenMinterV2:        "0xb43db544E2c27092c107639Ad201b3dEfAbcF192",
+  MessageV2:            "0xbaC0179bB358A8936169a63408C8481D582390C4",
+
+  // Gateway
+  GatewayWallet: "0x0077777d7EBA4688BDeF3E311b846F25870A19B9",
+  GatewayMinter: "0x0022222ABE238Cc2C7Bb1f21003F0a260052475B",
+
+  // Common
+  Multicall3: "0xcA11bde05977b3631167028862bE2a173976CA11",
+  Permit2:    "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+} as const;
+
+export const CCTP_DOMAINS = {
+  ARC_TESTNET:      26,
+  ETHEREUM_SEPOLIA: 0,
+  BASE_SEPOLIA:     6,
+} as const;
