@@ -306,7 +306,7 @@ export function SwapWidget() {
       {error && (
         <div className="mt-4 p-4 rounded-2xl border border-rose-200 bg-rose-50/70 text-rose-700 text-xs leading-relaxed space-y-1.5 shadow-sm">
           <div className="font-bold flex items-center gap-1 text-[13px] text-rose-800">Configuration Required</div>
-          <p>{error}</p>
+          <p className="whitespace-pre-line">{error}</p>
         </div>
       )}
 

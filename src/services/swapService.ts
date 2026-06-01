@@ -15,11 +15,38 @@ export interface SwapResult {
 
 function getValidatedKitKey(): string {
   const kitKey = process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY;
+  
+  // 1. Missing Kit Key
   if (!kitKey || kitKey === "YOUR_CIRCLE_KIT_KEY_HERE" || kitKey.includes("00000000000000000000000000000000")) {
     throw new Error("Circle Web3 AppKit is unconfigured. A valid Kit Key is required to execute real swaps. Please register at console.circle.com, generate a Kit Key, and set NEXT_PUBLIC_CIRCLE_KIT_KEY in your .env or .env.local file.");
   }
+
+  // 2. Wrong Credential Type (distinguishing standard API Key from Kit Key)
+  if (!kitKey.startsWith("KIT_KEY:")) {
+    throw new Error(
+      "Circle Swap requires a valid Circle Web3 Services Kit Key.\n\n" +
+      "The configured credential is not a Kit Key.\n\n" +
+      "Expected format:\n" +
+      "KIT_KEY::\n\n" +
+      "Please generate a Kit Key from Circle Developer Console and update your deployment environment."
+    );
+  }
+
+  // 3. Invalid Kit Key Format
+  const parts = kitKey.split(":");
+  if (parts.length < 3 || !parts[1] || !parts[2]) {
+    throw new Error(
+      "Circle Swap requires a valid Circle Web3 Services Kit Key.\n\n" +
+      "The configured Kit Key format is invalid or malformed.\n\n" +
+      "Expected format:\n" +
+      "KIT_KEY::\n\n" +
+      "Please verify your credentials and try again."
+    );
+  }
+
   return kitKey;
 }
+
 
 export async function swapOnArc(params: SwapParams): Promise<SwapResult> {
   const kitKey = getValidatedKitKey();
