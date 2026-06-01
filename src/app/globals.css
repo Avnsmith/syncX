@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b; /* Zinc 950 */
-  --foreground: #fafafa; /* Zinc 50 */
+  --background: #f8fafc; /* Slate 50 */
+  --foreground: #0f172a; /* Slate 900 */
 }
 
 @theme inline {
@@ -19,28 +19,29 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar for premium light look */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #f1f5f9; /* Slate 100 */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #cbd5e1; /* Slate 300 */
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #94a3b8; /* Slate 400 */
 }
 
-/* Fix browser native dropdown option style clash (white text on white background) */
+/* Fix browser native dropdown option style clash */
 option {
-  background-color: #09090b !important; /* Zinc 950 */
-  color: #e4e4e7 !important; /* Zinc 200 */
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
+
 

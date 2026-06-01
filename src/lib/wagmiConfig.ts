@@ -11,7 +11,7 @@ const connectors = connectorsForWallets(
     },
   ],
   {
-    appName: "Arc Starter Kit",
+    appName: "SyncX",
     projectId: "e596700f135b91b975e5330a108b98eb", // Fallback dummy key to bypass WalletConnect ID requirements for standard injected wallets
   }
 );

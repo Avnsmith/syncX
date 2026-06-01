@@ -1,3 +1,5 @@
+import { PaymentResponse } from '@/services/payments/types';
+
 export interface IStreamPayProvider {
   /** Process a streaming payment / subscription */
   processPayment(request: {

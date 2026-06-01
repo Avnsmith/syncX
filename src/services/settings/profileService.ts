@@ -1,3 +1,5 @@
+import { UserProfile } from '@/lib/profile';
+
 export interface IProfileService {
   /** Retrieve the current user profile */
   getProfile(): Promise<UserProfile>;

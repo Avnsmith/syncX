@@ -3,7 +3,7 @@
 import React from "react";
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
 import { wagmiConfig } from "@/lib/wagmiConfig";
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -36,8 +36,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-          theme={darkTheme({
-            accentColor: "#0ea5e9", // Sky-500
+          theme={lightTheme({
+            accentColor: "#0284c7", // Sky-600 for light theme
             accentColorForeground: "white",
             borderRadius: "large",
             overlayBlur: "small",

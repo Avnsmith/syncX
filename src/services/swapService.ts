@@ -13,7 +13,16 @@ export interface SwapResult {
   amountOut: string;
 }
 
+function getValidatedKitKey(): string {
+  const kitKey = process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY;
+  if (!kitKey || kitKey === "YOUR_CIRCLE_KIT_KEY_HERE" || kitKey.includes("00000000000000000000000000000000")) {
+    throw new Error("Circle Web3 AppKit is unconfigured. A valid Kit Key is required to execute real swaps. Please register at console.circle.com, generate a Kit Key, and set NEXT_PUBLIC_CIRCLE_KIT_KEY in your .env or .env.local file.");
+  }
+  return kitKey;
+}
+
 export async function swapOnArc(params: SwapParams): Promise<SwapResult> {
+  const kitKey = getValidatedKitKey();
   const adapter = await createArcAdapter(params.walletClient);
 
   const result = await kit.swap({
@@ -22,7 +31,7 @@ export async function swapOnArc(params: SwapParams): Promise<SwapResult> {
     tokenOut: params.tokenOut,
     amountIn: params.amount,
     config: {
-      kitKey: process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY || "KIT_KEY:00000000000000000000000000000000:00000000000000000000000000000000",
+      kitKey,
     },
   });
 
@@ -40,6 +49,7 @@ export interface EstimateSwapParams {
 }
 
 export async function estimateSwapOnArc(params: EstimateSwapParams): Promise<string> {
+  const kitKey = getValidatedKitKey();
   const adapter = await createArcAdapter(params.walletClient);
 
   const estimate = await kit.estimateSwap({
@@ -48,7 +58,7 @@ export async function estimateSwapOnArc(params: EstimateSwapParams): Promise<str
     tokenOut: params.tokenOut,
     amountIn: params.amount,
     config: {
-      kitKey: process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY || "KIT_KEY:00000000000000000000000000000000:00000000000000000000000000000000",
+      kitKey,
     },
   });
 

@@ -1,3 +1,5 @@
+import { AIConfig } from '@/lib/aiConfig';
+
 export interface IAIConfigService {
   /** Fetch current AI configuration */
   getConfig(): Promise<AIConfig>;

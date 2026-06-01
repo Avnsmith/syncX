@@ -158,11 +158,11 @@ export function SwapWidget() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 rounded-3xl border border-zinc-800 bg-zinc-950/70 shadow-2xl backdrop-blur-lg">
+    <div className="w-full max-w-md mx-auto p-6 rounded-3xl border border-slate-200 bg-white shadow-xl">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-zinc-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
           <span>Swap Tokens</span>
-          <span className="text-[10px] uppercase font-bold tracking-widest text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
             Arc Testnet
           </span>
         </h2>
@@ -170,8 +170,8 @@ export function SwapWidget() {
 
       <form onSubmit={handleSwap} className="space-y-4">
         {/* Token In Input */}
-        <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 focus-within:border-sky-500/50 transition-all">
-          <div className="flex items-center justify-between mb-1.5 text-xs text-zinc-500">
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 focus-within:border-sky-500/50 transition-all">
+          <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 font-semibold">
             <span>Pay</span>
             <span>Balance: {balanceIn} {tokenIn.symbol}</span>
           </div>
@@ -181,7 +181,7 @@ export function SwapWidget() {
               placeholder="0.0"
               value={amountIn}
               onChange={(e) => setAmountIn(e.target.value)}
-              className="w-full bg-transparent text-2xl font-bold text-zinc-100 placeholder-zinc-700 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-full bg-transparent text-2xl font-bold text-slate-900 placeholder-slate-300 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               required
               min="0.000001"
               step="any"
@@ -199,11 +199,11 @@ export function SwapWidget() {
                   }
                 }
               }}
-              className="bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-1.5 text-sm font-semibold text-zinc-200 focus:outline-none"
+              className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-700 focus:outline-none cursor-pointer"
               disabled={loading}
             >
               {ARC_TESTNET_TOKENS.map((t) => (
-                <option key={t.symbol} value={t.symbol} className="bg-zinc-950 text-zinc-200">
+                <option key={t.symbol} value={t.symbol} className="bg-white text-slate-800">
                   {t.symbol}
                 </option>
               ))}
@@ -217,15 +217,15 @@ export function SwapWidget() {
             type="button"
             onClick={handleFlip}
             disabled={loading}
-            className="p-2 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-sky-400 hover:border-sky-500/30 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
+            className="p-2 rounded-xl border border-slate-200 bg-white text-slate-400 hover:text-sky-600 hover:border-sky-200 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
           >
             <ArrowDownUp className="h-4 w-4" />
           </button>
         </div>
 
         {/* Token Out Input */}
-        <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800">
-          <div className="flex items-center justify-between mb-1.5 text-xs text-zinc-500">
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+          <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 font-semibold">
             <span>Receive (Estimated)</span>
             <span>Balance: {balanceOut} {tokenOut.symbol}</span>
           </div>
@@ -235,7 +235,7 @@ export function SwapWidget() {
               placeholder={isEstimating ? "Estimating..." : "0.0"}
               value={isEstimating ? "" : amountOut}
               readOnly
-              className={`w-full bg-transparent text-2xl font-bold focus:outline-none transition-all duration-300 ${isEstimating ? "text-zinc-600 animate-pulse" : "text-zinc-400"}`}
+              className={`w-full bg-transparent text-2xl font-bold focus:outline-none transition-all duration-300 ${isEstimating ? "text-slate-400 animate-pulse" : "text-slate-700"}`}
             />
             <select
               value={tokenOut.symbol}
@@ -249,11 +249,11 @@ export function SwapWidget() {
                   }
                 }
               }}
-              className="bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-1.5 text-sm font-semibold text-zinc-200 focus:outline-none"
+              className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-700 focus:outline-none cursor-pointer"
               disabled={loading}
             >
               {ARC_TESTNET_TOKENS.map((t) => (
-                <option key={t.symbol} value={t.symbol} className="bg-zinc-950 text-zinc-200">
+                <option key={t.symbol} value={t.symbol} className="bg-white text-slate-800">
                   {t.symbol}
                 </option>
               ))}
@@ -262,33 +262,33 @@ export function SwapWidget() {
         </div>
 
         {/* Fee & Network details */}
-        <div className="p-3.5 rounded-2xl border border-zinc-900 bg-zinc-900/30 space-y-1.5 text-xs text-zinc-400">
+        <div className="p-3.5 rounded-2xl border border-slate-100 bg-slate-50 space-y-1.5 text-xs text-slate-500 font-medium">
           <div className="flex justify-between">
             <span className="flex items-center gap-1">
-              Estimated Fee <HelpCircle className="h-3 w-3 text-zinc-600" />
+              Estimated Fee <HelpCircle className="h-3 w-3 text-slate-400" />
             </span>
-            <span className="font-semibold text-zinc-200">~ 0.01 USDC</span>
+            <span className="font-semibold text-slate-800">~ 0.01 USDC</span>
           </div>
           <div className="flex justify-between">
             <span>Price Impact</span>
-            <span className="text-emerald-400 font-medium">&lt; 0.05%</span>
+            <span className="text-emerald-600 font-semibold">&lt; 0.05%</span>
           </div>
         </div>
 
         {/* Submit Swap */}
         {(!mounted || !isConnected) ? (
-          <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-zinc-800 text-zinc-500 rounded-2xl">
+          <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-slate-200 text-slate-400 rounded-2xl font-medium">
             Please connect wallet to swap
           </div>
         ) : !isCorrectChain ? (
-          <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-rose-900/30 text-rose-400/80 rounded-2xl bg-rose-500/5">
+          <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-rose-200 text-rose-500 rounded-2xl bg-rose-50/50 font-medium animate-pulse">
             Please switch chain to Arc Testnet
           </div>
         ) : (
           <button
             type="submit"
             disabled={loading || !amountIn}
-            className="w-full py-4 px-6 rounded-2xl font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white hover:from-sky-400 hover:to-indigo-400 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-sky-500/10 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-4 px-6 rounded-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 text-white hover:from-sky-500 hover:to-indigo-500 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-600/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>
@@ -304,8 +304,9 @@ export function SwapWidget() {
 
       {/* Error Output */}
       {error && (
-        <div className="mt-4 p-3 rounded-xl border border-rose-500/20 bg-rose-500/5 text-rose-400 text-xs text-center">
-          {error}
+        <div className="mt-4 p-4 rounded-2xl border border-rose-200 bg-rose-50/70 text-rose-700 text-xs leading-relaxed space-y-1.5 shadow-sm">
+          <div className="font-bold flex items-center gap-1 text-[13px] text-rose-800">Configuration Required</div>
+          <p>{error}</p>
         </div>
       )}
 

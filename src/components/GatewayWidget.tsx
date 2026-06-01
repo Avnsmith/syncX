@@ -129,23 +129,23 @@ export function GatewayWidget() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 rounded-3xl border border-zinc-800 bg-zinc-950/70 shadow-2xl backdrop-blur-lg">
+    <div className="w-full max-w-md mx-auto p-6 rounded-3xl border border-slate-200 bg-white shadow-xl">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-zinc-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
           <span>Unified Balance</span>
-          <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">
             Gateway
           </span>
         </h2>
       </div>
 
-      <div className="flex gap-2 p-1.5 rounded-2xl bg-zinc-900/60 border border-zinc-900 mb-6">
+      <div className="flex gap-2 p-1 rounded-2xl bg-slate-200/80 border border-slate-300/40 mb-6">
         <button
           onClick={() => { setActiveTab("deposit"); setError(null); setSuccessMsg(null); setSuccessTx(null); }}
           className={`w-1/2 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             activeTab === "deposit"
-              ? "bg-zinc-900 text-zinc-100 border border-zinc-800 shadow"
-              : "text-zinc-500 hover:text-zinc-400"
+              ? "bg-white text-slate-900 border border-slate-200/60 shadow-md"
+              : "text-slate-500 hover:text-slate-700"
           }`}
         >
           Deposit USDC
@@ -154,8 +154,8 @@ export function GatewayWidget() {
           onClick={() => { setActiveTab("spend"); setError(null); setSuccessMsg(null); setSuccessTx(null); }}
           className={`w-1/2 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             activeTab === "spend"
-              ? "bg-zinc-900 text-zinc-100 border border-zinc-800 shadow"
-              : "text-zinc-500 hover:text-zinc-400"
+              ? "bg-white text-slate-900 border border-slate-200/60 shadow-md"
+              : "text-slate-500 hover:text-slate-700"
           }`}
         >
           Instant Spend
@@ -164,8 +164,8 @@ export function GatewayWidget() {
 
       {activeTab === "deposit" ? (
         <form onSubmit={handleDeposit} className="space-y-4">
-          <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Source Network</span>
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block mb-1">Source Network</span>
             <select
               value={depositChain.id}
               onChange={(e) => {
@@ -173,18 +173,18 @@ export function GatewayWidget() {
                 const found = BRIDGE_CHAINS.find(c => c.id === id);
                 if (found) setDepositChain(found);
               }}
-              className="w-full bg-transparent text-sm font-semibold text-zinc-200 focus:outline-none cursor-pointer"
+              className="w-full bg-transparent text-sm font-semibold text-slate-700 focus:outline-none cursor-pointer"
             >
               {BRIDGE_CHAINS.filter(c => c.appKitId !== "Arc_Testnet").map((c) => (
-                <option key={c.id} value={c.id} className="bg-zinc-950 text-zinc-200">
+                <option key={c.id} value={c.id} className="bg-white text-slate-800">
                   {c.name}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800">
-            <div className="flex items-center justify-between mb-1.5 text-xs text-zinc-500">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 font-semibold">
               <span>Amount to Deposit</span>
               <span>Balance: {balanceText} USDC</span>
             </div>
@@ -194,32 +194,32 @@ export function GatewayWidget() {
                 placeholder="0.0"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full bg-transparent text-2xl font-bold text-zinc-100 placeholder-zinc-700 focus:outline-none [appearance:textfield]"
+                className="w-full bg-transparent text-2xl font-bold text-slate-900 placeholder-slate-300 focus:outline-none [appearance:textfield]"
                 required
                 min="0.01"
                 step="any"
                 disabled={loading}
               />
-              <span className="text-sm font-semibold text-zinc-400">USDC</span>
+              <span className="text-sm font-semibold text-slate-400">USDC</span>
             </div>
           </div>
 
-          <div className="p-3 rounded-2xl border border-zinc-900 bg-zinc-900/30 text-xs text-zinc-400 flex items-start gap-2">
-            <HelpCircle className="h-4 w-4 text-indigo-400 shrink-0 mt-0.5" />
+          <div className="p-3 rounded-2xl border border-slate-100 bg-slate-50 text-xs text-slate-500 font-medium flex items-start gap-2">
+            <HelpCircle className="h-4 w-4 text-indigo-500 shrink-0 mt-0.5" />
             <span>
               Depositing funds locks USDC into the Gateway account, allowing sub-second payments and instant cross-chain liquidity.
             </span>
           </div>
 
           {(!mounted || !isConnected) ? (
-            <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-zinc-800 text-zinc-500 rounded-2xl">
+            <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-slate-200 text-slate-400 rounded-2xl font-medium">
               Please connect wallet to deposit
             </div>
           ) : (
             <button
               type="submit"
               disabled={loading || !amount}
-              className="w-full py-4 px-6 rounded-2xl font-bold bg-indigo-600 text-white hover:bg-indigo-500 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-4 px-6 rounded-2xl font-bold bg-indigo-600 hover:bg-indigo-550 text-white active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -235,8 +235,8 @@ export function GatewayWidget() {
       ) : (
         <form onSubmit={handleSpend} className="space-y-4">
           {/* Destination Chain Selector */}
-          <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Destination Network</span>
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block mb-1">Destination Network</span>
             <select
               value={spendChain.id}
               onChange={(e) => {
@@ -244,19 +244,19 @@ export function GatewayWidget() {
                 const found = BRIDGE_CHAINS.find(c => c.id === id);
                 if (found) setSpendChain(found);
               }}
-              className="w-full bg-transparent text-sm font-semibold text-zinc-200 focus:outline-none cursor-pointer"
+              className="w-full bg-transparent text-sm font-semibold text-slate-700 focus:outline-none cursor-pointer"
               disabled={loading}
             >
               {BRIDGE_CHAINS.map((c) => (
-                <option key={c.id} value={c.id} className="bg-zinc-950 text-zinc-200">
+                <option key={c.id} value={c.id} className="bg-white text-slate-800">
                   {c.name}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800">
-            <div className="flex items-center justify-between mb-1.5 text-xs text-zinc-500">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 font-semibold">
               <span>Amount to Spend</span>
               <span>Unified Balance: {unifiedBalance} USDC</span>
             </div>
@@ -266,45 +266,45 @@ export function GatewayWidget() {
                 placeholder="0.0"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full bg-transparent text-2xl font-bold text-zinc-100 placeholder-zinc-700 focus:outline-none [appearance:textfield]"
+                className="w-full bg-transparent text-2xl font-bold text-slate-900 placeholder-slate-300 focus:outline-none [appearance:textfield]"
                 required
                 min="0.01"
                 step="any"
                 disabled={loading}
               />
-              <span className="text-sm font-semibold text-zinc-400">USDC</span>
+              <span className="text-sm font-semibold text-slate-400">USDC</span>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-1 focus-within:border-indigo-500/50 transition-all">
-            <label className="text-[10px] uppercase font-bold text-zinc-500">Recipient Address ({spendChain.name})</label>
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1 focus-within:border-indigo-500/50 transition-all">
+            <label className="text-[10px] uppercase font-bold text-slate-500">Recipient Address ({spendChain.name})</label>
             <input
               type="text"
               placeholder="0x..."
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
-              className="w-full bg-transparent text-sm text-zinc-200 placeholder-zinc-700 focus:outline-none"
+              className="w-full bg-transparent text-sm text-slate-850 placeholder-slate-300 focus:outline-none font-mono"
               required
               disabled={loading}
             />
           </div>
 
-          <div className="p-3 rounded-2xl border border-zinc-900 bg-zinc-900/30 text-xs text-zinc-400 flex items-start gap-2">
-            <ArrowRightLeft className="h-4 w-4 text-indigo-400 shrink-0 mt-0.5" />
+          <div className="p-3 rounded-2xl border border-slate-100 bg-slate-50 text-xs text-slate-500 font-medium flex items-start gap-2">
+            <ArrowRightLeft className="h-4 w-4 text-indigo-500 shrink-0 mt-0.5" />
             <span>
               Spending USDC transfers directly from the Unified Balance to the recipient on {spendChain.name} in &lt;500ms.
             </span>
           </div>
 
           {(!mounted || !isConnected) ? (
-            <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-zinc-800 text-zinc-500 rounded-2xl">
+            <div className="w-full text-center text-sm py-3 px-4 border border-dashed border-slate-200 text-slate-400 rounded-2xl font-medium">
               Please connect wallet to spend
             </div>
           ) : (
             <button
               type="submit"
               disabled={loading || !amount || !recipient}
-              className="w-full py-4 px-6 rounded-2xl font-bold bg-indigo-600 text-white hover:bg-indigo-500 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-4 px-6 rounded-2xl font-bold bg-indigo-600 hover:bg-indigo-550 text-white active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -320,27 +320,27 @@ export function GatewayWidget() {
       )}
 
       {error && (
-        <div className="mt-4 p-3 rounded-xl border border-rose-500/20 bg-rose-500/5 text-rose-400 text-xs text-center">
+        <div className="mt-4 p-3 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs text-center font-medium">
           {error}
         </div>
       )}
 
       {successMsg && (
-        <div className="mt-4 p-3.5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-xs text-center font-medium space-y-2">
+        <div className="mt-4 p-3.5 rounded-xl border border-emerald-250 bg-emerald-50 text-emerald-700 text-xs text-center font-medium space-y-2">
           <div>{successMsg}</div>
           {successTx && (
-            <div className="pt-2 border-t border-emerald-500/10 flex flex-col items-center gap-1.5 text-[10px]">
-              <span className="text-zinc-500 font-bold uppercase tracking-wider text-[9px]">Transaction Hash</span>
+            <div className="pt-2 border-t border-emerald-200/60 flex flex-col items-center gap-1.5 text-[10px]">
+              <span className="text-slate-500 font-bold uppercase tracking-wider text-[9px]">Transaction Hash</span>
               <a
                 href={successTx.url || "#"}
                 target="_blank"
                 rel="noreferrer"
-                className="font-mono text-emerald-400 hover:text-emerald-300 hover:underline transition-all break-all select-all block px-2 py-1 rounded bg-emerald-500/10 max-w-full truncate"
+                className="font-mono text-sky-600 hover:underline transition-all break-all select-all block px-2 py-1 rounded bg-slate-100 max-w-full truncate"
               >
                 {successTx.hash}
               </a>
               {successTx.url && (
-                <span className="text-[9px] text-zinc-500 italic mt-0.5">Click to view on Explorer ↗</span>
+                <span className="text-[9px] text-slate-400 italic mt-0.5">Click to view on Explorer ↗</span>
               )}
             </div>
           )}

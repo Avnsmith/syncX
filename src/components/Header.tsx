@@ -3,20 +3,20 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between bg-gray-900/80 backdrop-blur-md px-4 py-2 shadow-md">
-      <div className="flex items-center space-x-2">
-        <Link href="/">
-          <Image src="/logo.png" alt="SyncX Logo" width={40} height={40} className="rounded" />
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-white/95 backdrop-blur-md px-6 py-4 shadow-sm border-b border-slate-100">
+      <div className="flex items-center space-x-3">
+        <Link href="/" className="flex items-center space-x-2.5">
+          <Image src="/logo.png" alt="SyncX Logo" width={36} height={36} className="rounded-xl shadow-sm" />
+          <span className="text-xl font-bold text-slate-900 tracking-tight">SyncX</span>
         </Link>
-        <span className="text-xl font-semibold text-white">SyncX</span>
       </div>
-      <nav className="flex space-x-4">
-        <Link href="/" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Home</Link>
-        <Link href="/wallet" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Wallet</Link>
-        <Link href="/send" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Send</Link>
-        <Link href="/activity" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Activity</Link>
-        <Link href="/assistant" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Assistant</Link>
-        <Link href="/settings" className="text-sm font-medium text-gray-200 hover:text-white transition-colors">Settings</Link>
+      <nav className="flex space-x-6">
+        <Link href="/" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Dashboard</Link>
+        <Link href="/wallet" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Wallet</Link>
+        <Link href="/send" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Send</Link>
+        <Link href="/activity" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Activity</Link>
+        <Link href="/assistant" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">AI Assistant</Link>
+        <Link href="/settings" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Settings</Link>
       </nav>
     </header>
   );
