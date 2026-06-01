@@ -9,7 +9,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: "API Key is required" }, { status: 400 });
     }
 
-    const testEndpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const testEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     const payload = {
       contents: [{ role: "user", parts: [{ text: "Hello" }] }],
     };

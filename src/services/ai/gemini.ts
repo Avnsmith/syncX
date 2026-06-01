@@ -15,7 +15,7 @@ export interface GeminiResponse {
   reply: string;
 }
 
-const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
+const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 const DEFAULT_TIMEOUT_MS = 8000;
 const MAX_RETRIES = 2;
 

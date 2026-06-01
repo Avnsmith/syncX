@@ -14,7 +14,8 @@ export interface SwapResult {
 }
 
 function getValidatedKitKey(): string {
-  const kitKey = process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY;
+  const rawKey = process.env.NEXT_PUBLIC_CIRCLE_KIT_KEY;
+  const kitKey = rawKey ? rawKey.trim() : "";
   
   // 1. Missing Kit Key
   if (!kitKey || kitKey === "YOUR_CIRCLE_KIT_KEY_HERE" || kitKey.includes("00000000000000000000000000000000")) {
